@@ -68,10 +68,26 @@ const cursosData = [
 ];
 
 /* --- Amistades (ejemplo) --- */
+/* Nota: puedes añadir `detailUrl` a cualquier compañero para que aparezca el botón "Ver página". */
 const amigosData = [
-  { id: "a-01", nombre: "Marcos", descripcion: "Compañero desde el primer ciclo; siempre resolvemos problemas juntos." },
-  { id: "a-02", nombre: "Lucía", descripcion: "Creativa y crítica de diseño; me ayuda a pulir UI." },
-  { id: "a-03", nombre: "Daniel", descripcion: "Creador de ideas para juegos; colega de testeo y risas." },
+  {
+    id: "a-01",
+    nombre: "Ariana Emily Valencia Patiño ",
+    descripcion: "Compañera de la escuela profesional Administracion de Negocios en la UCSP.",
+    detailUrl: "https://arivalencia2025.github.io/Ariana_Emily_Valencia.github.io/"
+  },
+  {
+    id: "a-02",
+    nombre: "Roald Macedo Boza",
+    descripcion: "Compañero que pertence a la escuela profesional Ciencia de la Computación.",
+    detailUrl: "https://roaldmacedo-boza.github.io/roaldmacedo.github.io/"
+  },
+    {
+    id: "a-03",
+    nombre: "Flavia Micaela Díaz Zevallos",
+    descripcion: "Compañera de la escuela profesional Administracion de Negocios en la UCSP.",
+    detailUrl: "https://flaviamicaeladiazzevallos1.github.io/"
+  },
 ];
 
 /* --- Intereses / tarjetas de SobreMi --- */
@@ -182,11 +198,11 @@ function CursosSectionInline() {
   );
 }
 
-/* Sección: Amistades */
-function AmistadesSectionInline() {
+/* Sección: Compañeros (antes Amistades) — ahora con botón Ver página si existe detailUrl */
+function CompanerosSectionInline() {
   return (
     <motion.section
-      id="amistades-section-inline"
+      id="companeros-section-inline"
       className="py-12 px-4"
       style={{ backgroundColor: "#0f0f0e" }}
       variants={cursosContainerVariants}
@@ -195,13 +211,25 @@ function AmistadesSectionInline() {
       exit="hidden"
     >
       <div className="max-w-6xl mx-auto">
-        <h2 className="text-3xl font-bold text-white mb-6 text-center">Amistades</h2>
+        <h2 className="text-3xl font-bold text-white mb-6 text-center">Compañeros</h2>
 
         <motion.div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
           {amigosData.map((a) => (
             <motion.article key={a.id} variants={cardVariants} className="bg-[#1a1a1a]/70 border border-white/30 rounded-2xl p-5 h-full">
               <h3 className="text-lg font-semibold text-white mb-2">{a.nombre}</h3>
               <p className="text-sm text-gray-300 leading-relaxed">{a.descripcion}</p>
+
+              {/* botón Ver página solo si existe detailUrl */}
+              {a.detailUrl && (
+                <div className="mt-4">
+                  <button
+                    onClick={() => a.detailUrl && window.open(a.detailUrl, "_blank", "noopener,noreferrer")}
+                    className="inline-block px-4 py-2 rounded-md border border-white/20 text-white hover:bg-white/10 transition"
+                  >
+                    Ver página
+                  </button>
+                </div>
+              )}
             </motion.article>
           ))}
         </motion.div>
@@ -281,7 +309,7 @@ export default function SobreMi() {
           })}
           </motion.div>
 
-          {/* BOTÓN para mostrar/ocultar: Universidad y Amistades */}
+          {/* BOTÓN para mostrar/ocultar: Universidad y Compañeros */}
           <div className="mt-10 flex justify-center">
             <button
               onClick={() => setShowSections((prev) => !prev)}
@@ -291,15 +319,15 @@ export default function SobreMi() {
                 <FaBookOpen className="w-6 h-6 text-white" />
               </div>
               <div className="text-left">
-                <div className="text-white font-semibold">{showSections ? "Ocultar secciones" : "Universidad y amistades"}</div>
-                <div className="text-gray-300 text-sm">{showSections ? "Haz click para ocultarlas." : "Haz click para ver mis cursos y amistades."}</div>
+                <div className="text-white font-semibold">{showSections ? "Ocultar secciones" : "Universidad y compañeros"}</div>
+                <div className="text-gray-300 text-sm">{showSections ? "Haz click para ocultarlas." : "Haz click para ver mis cursos y compañeros."}</div>
               </div>
             </button>
           </div>
         </div>
       </section>
 
-      {/* ===================== APARTADO: UNIVERSIDAD Y AMISTADES ===================== */}
+      {/* ===================== APARTADO: UNIVERSIDAD Y AMISTADES/COMPAÑEROS ===================== */}
       <AnimatePresence mode="wait">
         {showSections && (
           <motion.div
@@ -313,14 +341,15 @@ export default function SobreMi() {
             {/* Bloque CURSOS */}
             <CursosSectionInline />
 
-            {/* Bloque AMISTADES */}
-            <AmistadesSectionInline />
+            {/* Bloque COMPAÑEROS (antes Amistades) */}
+            <CompanerosSectionInline />
           </motion.div>
         )}
       </AnimatePresence>
     </>
   );
 }
+
 
 
 

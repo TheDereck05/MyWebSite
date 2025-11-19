@@ -50,7 +50,7 @@ export default function Navbar({ overlayVisible }) {
         </div>
       </nav>
 
-      {/* 🔥 MusicPlayer abajo a la izquierda SIEMPRE */}
+      {/* MusicPlayer abajo a la izquierda  */}
       <div
         className={`fixed bottom-4 left-4 z-[99999] ${
           overlayVisible ? "pointer-events-none" : ""

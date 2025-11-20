@@ -10,7 +10,7 @@ const socialLinks = [
   { label: "GitHub", url: "https://github.com/TheDereck05", icon: FaGithub },
   { label: "LinkedIn", url: "https://www.linkedin.com/in/edmundo-fransua-nu%C3%B1ez-choque-4b6689383/", icon: FaLinkedin },
   { label: "Kick", url: "https://kick.com/niacun", icon: FaKickstarterK },
-  { label: "Instagram", url: "https://twitter.com/your-profile", icon: FaInstagram },
+  { label: "Instagram", url: "https://www.instagram.com/nunezgeremy/", icon: FaInstagram },
 ];
 
 export default function ContactSection() {
